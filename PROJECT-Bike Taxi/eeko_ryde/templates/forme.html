@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOK Your RyDE</title>
+</head>
+<body>
+    {% block body_block %}
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'images/byke2.webp' %}" alt=""width="260px" height="142px">
+                    <input type="checkbox" id="1" name="ev" value="1" onclick="selectOnlyThis(this.id)"/>EV
+                    <input type="checkbox" id="2" name="Normal" value="1" onclick="selectOnlyThis(this.id)"/>Normal
+                    <img src="{% static 'images/byke1.jpg' %}" alt="" width="160px" height="130px">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <select style="border-radius:10px ;height: 50px; width: 350px;background-color: #ffffff;" name="start" id="start">
+                                <option value="">Choose Your "PICK-UP" location</option>
+                                {% for i in locate %}
+                                <option value="{{i.location}}" >{{i.location}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <select style="border-radius:10px; height: 50px; width: 350px; margin-top: 60px; background-color: #ffffff; " name="ends" id="ends">
+                                <option value="">Choose Your "DROP-OFF" location</option>
+                                {% for i in locate %}
+                                <option value="{{i.location}}">{{i.location}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input style="border-radius:5px;height: 50px;width: 125px; margin-top: 60px; background-color: #ffffff;" type="submit" value="Checkout">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function selectOnlyThis(id) {
+            for (var i =1; i<=2; i++)
+            {
+                document.getElementById(i).checked = false;
+            }
+            document.getElementById(id).checked = true;
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>
+
+
+
+
+
+<!-- .img4 {
+    transition:all 0.8s;
+  }
+  
+  .img4:hover {
+    -ms-transform: scale(1.3,1.3);
+    -webkit-transform: scale(1.3,1.3);
+    transform: scale(1.3,1.3);
+  } -->
